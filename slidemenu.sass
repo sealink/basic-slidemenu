@@ -1,0 +1,139 @@
+// update here https://github.com/sealink/basic-slidemenu
+//
+// Global nav styels
+
+.main_nav-ul,
+.main_nav-sub-ul
+  list-style: none
+  margin: 0
+
+.main_nav-li,
+.main_nav-sub-li
+  position: relative
+  margin: 0
+
+.slidemenu-nav a
+  text-decoration: none
+  display: block
+  white-space: nowrap
+  +box-sizing(border-box)
+
+.main_nav-li
+  height: 100%
+  float: left
+  &.right
+    float: right
+
+// second level
+.main_nav-sub-ul
+  min-width: 160px
+  display: none
+  position: absolute
+  top: 100%
+  z-index: 99
+  .right &
+    right: 0
+
+@media screen and (min-width : $screen-xs-max)
+  .csstransforms
+    .main_nav-sub-ul
+      opacity: 0
+      display: block
+      +transition(all 250ms ease)
+      +translateY(-5%)
+      visibility: hidden
+    .main_nav-li:hover
+      .main_nav-sub-ul
+        visibility: visible
+        opacity: 1
+        +translateY(0%)
+
+
+// Hover formatting
+.main_nav-li:hover
+  .main_nav-sub-ul
+    display: block
+
+//Slider menu formatting
+@media screen and (max-width : $screen-xs-max)
+  .main_nav-ul
+    height: auto
+
+  .main_nav-link
+    background #cff
+
+  .main_nav-li
+    width: 100%
+    float: none
+
+  .main_nav-ul
+    position: relative
+    left: 0
+    +transition(left 0.5s)
+
+  .main_nav-sub-ul
+    position: absolute !important
+    width: 100%
+    left: 100%
+    top: 0
+    display: none
+    //refresh issues with IE10 fix
+    width: 1px
+    height: 1px
+    overflow: hidden
+    z-index: 99
+    clip: rect(1px, 1px, 1px, 1px)
+
+
+
+  /*
+  // ======================= Slidemenu plugin Styles ======================= */
+  .slidemenu-title
+    color: $nav_hover_color
+    font: 110% / 20px "Barmeno", Arial, Helvetica, sans-serif
+    +gradient-vertical($nav_up_color, $nav_upTo_color)
+    &:hover
+      color: #009ee0
+      +gradient-vertical($nav_hover_color, $nav_hoverTo_color)
+
+  .slidemenu-back
+    color: #009ee0
+    font-size: 13px
+    line-height: 15px
+    &:before
+      content: ''
+      text-align: center
+      display: inline-block
+      +css-arrow(6px, 10px, "left", #009ee0)
+      margin: 4px 5px 7px 0
+      vertical-align: middle
+    &:hover
+      color: #fff
+      &:before
+        +css-arrow(6px, 10px, "left", #fff)
+
+  .slidemenu-nav
+    position: relative
+
+  .slidemenu
+    width: 100%
+    overflow: hidden
+  .slidemenu-hidden
+    display: none
+
+  .slidemenu-clicked
+    position: static
+    .main_nav-sub-ul
+      width: 100%
+      height: auto
+      overflow: visible
+      position: absolute
+      z-index: auto
+      clip: auto
+      display: block
+
+  .slidemenu-child
+    .main_nav-ul
+      left: -100%
+    .main_nav-sub-ul
+      display: block
